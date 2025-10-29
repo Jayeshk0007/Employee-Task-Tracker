@@ -1,0 +1,51 @@
+name: Build and Deploy to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build Angular app
+        working-directory: frontend/employee-tracker-ui
+        run: |
+          npm ci
+          npm run build -- --configuration production
+
+      - name: Copy Angular dist into API wwwroot
+        run: |
+          mkdir -p backend/EmployeeTracker.Api/wwwroot
+          cp -R frontend/employee-tracker-ui/dist/* backend/EmployeeTracker.Api/wwwroot/
+
+      - name: Publish .NET app
+        run: |
+          dotnet restore backend/EmployeeTracker.Api/EmployeeTracker.Api.csproj
+          dotnet publish backend/EmployeeTracker.Api/EmployeeTracker.Api.csproj -c Release -o publish
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: publish
+
+# Notes:
+# - Create the secret AZURE_WEBAPP_PUBLISH_PROFILE in GitHub Settings -> Secrets -> Actions with the full publish profile XML downloaded from Azure Portal.
+# - This workflow builds Angular and copies the production files into the API's wwwroot, so a single App Service will serve both API and frontend.
+# - If your Angular build outputs to dist/<project-name>, the `cp` step above copies the dist contents. Adjust paths if your output differs.

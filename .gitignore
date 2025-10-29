@@ -1,0 +1,27 @@
+# .NET
+bin/
+obj/
+*.user
+*.rsuser
+*.suo
+*.userprefs
+*.cache
+*.log
+*.vs/
+.vscode/
+
+# Secrets
+appsettings.*.local.json
+secrets.json
+
+# Angular/Node (future frontend)
+node_modules/
+dist/
+.angular/
+coverage/
+package-lock.json
+*.db
+
+# OS
+Thumbs.db
+.DS_Store

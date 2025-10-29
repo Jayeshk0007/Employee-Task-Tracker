@@ -1,0 +1,56 @@
+@host = http://localhost:5278
+
+### Login as manager
+POST {{host}}/api/Auth/login
+Content-Type: application/json
+
+{
+	"email": "manager@demo.local",
+	"password": "Pass@123"
+}
+
+### Login as employee
+POST {{host}}/api/Auth/login
+Content-Type: application/json
+
+{
+	"email": "employee@demo.local",
+	"password": "Pass@123"
+}
+
+### Get employees (manager only)
+GET {{host}}/api/Employees
+Authorization: Bearer {{token}}
+
+### Create employee (manager only)
+POST {{host}}/api/Employees
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+	"firstName": "Alice",
+	"lastName": "Smith",
+	"title": "QA",
+	"email": "alice@demo.local",
+	"password": "Pass@123"
+}
+
+### List tasks (manager sees all; employee sees own)
+GET {{host}}/api/Tasks
+Authorization: Bearer {{token}}
+
+### Create task (manager only)
+POST {{host}}/api/Tasks
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+	"title": "Prepare report",
+	"description": "Weekly status",
+	"assignedToEmployeeId": 1
+}
+
+GET {{EmployeeTracker.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
