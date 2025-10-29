@@ -39,22 +39,3 @@ An `azure-pipelines.yml` is included to build backend and (later) frontend, run 
 ## License
 
 MIT
-
-## GitHub + Azure App Service (quick guide)
-
-This repo can be deployed to Azure App Service using GitHub Actions. The project contains a sample GitHub Actions workflow that will build the Angular frontend, copy its production output into the API `wwwroot`, build/publish the API and deploy the result to an Azure Web App.
-
-High-level steps:
-
-1. Create a GitHub repository and push this project (see "Quick Git + GitHub steps" above).
-2. In the Azure Portal create an App Service (Windows or Linux) configured for .NET 8.
-3. In the App Service 'Overview' pane click "Get publish profile" and download the `.PublishSettings` file.
-4. In your GitHub repo go to Settings → Secrets → Actions and add a secret named `AZURE_WEBAPP_PUBLISH_PROFILE` with the full contents of the publish profile XML file.
-5. Push to the `main` branch — the `deploy-azure.yml` workflow will run and deploy the app.
-
-If you prefer separate hosting (frontend + backend) you can modify the workflow to deploy the frontend to Azure Static Web Apps or another hosting target.
-
-If you want, I can:
-
-- Create the GitHub Actions workflow file for you (build + deploy both projects into a single App Service)
-- Or create two separate workflows (API -> App Service, frontend -> Static Web Apps)
