@@ -26,13 +26,21 @@ jobs:
       - name: Build Angular app
         working-directory: frontend/employee-tracker-ui
         run: |
-          npm ci
+          # repo doesn't contain package-lock.json, use npm install instead of `npm ci`
+          npm install
           npm run build -- --configuration production
 
       - name: Copy Angular dist into API wwwroot
         run: |
           mkdir -p backend/EmployeeTracker.Api/wwwroot
-          cp -R frontend/employee-tracker-ui/dist/* backend/EmployeeTracker.Api/wwwroot/
+          # Angular sometimes creates dist/<project-name>/, so copy contents recursively whether nested or not
+          if [ -d "frontend/employee-tracker-ui/dist" ]; then
+            # copy all files from any nested folder(s) inside dist
+            shopt -s nullglob || true
+            for d in frontend/employee-tracker-ui/dist/*; do
+              cp -R "$d"/* backend/EmployeeTracker.Api/wwwroot/ || true
+            done
+          fi
 
       - name: Publish .NET app
         run: |
