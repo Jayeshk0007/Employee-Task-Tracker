@@ -63,7 +63,6 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
         </mat-form-field>
         <div class="row stagger">
           <mat-checkbox [(ngModel)]="remember" name="remember">Remember me</mat-checkbox>
-          <button mat-button type="button" class="link">Forgot password?</button>
         </div>
         <div class="actions stagger">
           <button mat-stroked-button type="button" (click)="goRegister()">Sign up</button>
