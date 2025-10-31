@@ -18,6 +18,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { EditTaskDialogComponent } from './edit-task-dialog.component';
 
 interface Task { id: number; title: string; description?: string; status: string; assignedToEmployeeId: number; }
 interface Employee { id: number; firstName: string; lastName: string; title?: string; email: string; }
@@ -108,6 +109,26 @@ export class TasksComponent implements OnInit {
   }
   update(t: Task){
     this.http.put<Task>(`${this.baseUrl}/Tasks/${t.id}/status`, { status: t.status }).subscribe(_ => this.load());
+  }
+  edit(t: Task){
+    const ref = this.dialog.open(EditTaskDialogComponent, { width: '560px', data: { id: t.id, title: t.title, description: t.description, assignedToEmployeeId: t.assignedToEmployeeId, employees: this.employees } });
+    ref.afterClosed().subscribe(result => {
+      if (!result) return;
+      const payload = { title: result.title, description: result.description, assignedToEmployeeId: result.assignedToEmployeeId };
+      this.http.put<Task>(`${this.baseUrl}/Tasks/${t.id}`, payload).subscribe({
+        next: () => { this.snack.open('Task updated', 'Close', { duration: 2000 }); this.load(); },
+        error: err => {
+          console.error('Update failed', err);
+          const status = err?.status;
+          const serverMsg = (err?.error && typeof err.error === 'string') ? err.error : (err?.error?.message || '');
+          let msg = 'Failed to update task.';
+          if (serverMsg) msg += ` ${serverMsg}`;
+          if (status) msg += ` (HTTP ${status})`;
+          this.snack.open(msg, 'Close', { duration: 5000 });
+          if (status === 401) setTimeout(() => this.auth.logout(), 800);
+        }
+      });
+    });
   }
   delete(t: Task){
     if (!t || !t.id) {
