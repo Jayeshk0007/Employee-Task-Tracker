@@ -1,0 +1,9 @@
+.profile-card{ max-width: 720px; margin: 16px auto; padding: 16px 18px; }
+.header{ display:flex; align-items:center; gap:12px; margin-bottom: 8px; }
+.avatar{ width:56px; height:56px; display:flex; align-items:center; justify-content:center; color:#3f51b5; }
+.avatar mat-icon{ font-size:56px; width:56px; height:56px; }
+.sub{ color:#666; }
+.grid{ margin-top: 10px; display:grid; grid-template-columns: 1fr; gap:10px; }
+.row{ display:flex; gap:12px; }
+.row .label{ width: 160px; color:#555; }
+.row .value{ font-weight:600; }

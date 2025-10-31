@@ -26,8 +26,8 @@ jobs:
       - name: Build Angular app
         working-directory: frontend/employee-tracker-ui
         run: |
-          # repo doesn't contain package-lock.json, use npm install instead of `npm ci`
-          npm install
+          # package-lock.json is present — use npm ci for deterministic installs
+          npm ci
           npm run build -- --configuration production
 
       - name: Copy Angular dist into API wwwroot

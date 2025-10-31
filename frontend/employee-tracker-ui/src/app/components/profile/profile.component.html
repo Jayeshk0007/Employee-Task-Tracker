@@ -1,0 +1,22 @@
+<mat-card class="profile-card">
+  <div class="header">
+    <div class="avatar">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <div class="titles">
+      <h2>Profile</h2>
+      <div class="sub">Your account details</div>
+    </div>
+  </div>
+  <div *ngIf="profile as p" class="grid">
+    <div class="row"><span class="label">Name</span><span class="value">{{ displayName(p) }}</span></div>
+    <div class="row"><span class="label">Role</span><span class="value">{{p.role}}</span></div>
+    <div class="row"><span class="label">Email</span><span class="value">{{p.email}}</span></div>
+    <ng-container *ngIf="p.role === 'Employee'">
+      <div class="row"><span class="label">Employee ID</span><span class="value">{{p.employeeId}}</span></div>
+      <div class="row"><span class="label">First name</span><span class="value">{{p.firstName || '-'}}</span></div>
+      <div class="row"><span class="label">Last name</span><span class="value">{{p.lastName || '-'}}</span></div>
+      <div class="row"><span class="label">Title</span><span class="value">{{p.title || '-'}}</span></div>
+    </ng-container>
+  </div>
+</mat-card>

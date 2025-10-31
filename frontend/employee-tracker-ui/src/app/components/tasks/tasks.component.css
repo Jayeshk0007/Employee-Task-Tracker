@@ -1,0 +1,36 @@
+.card-header{ display:flex; align-items:center; gap:16px; justify-content:space-between; }
+.card-header h2{ margin-left: 12px; }
+.filters{ display:flex; gap:12px; align-items:center; }
+.filter-field{ width:220px; }
+.add-form{ margin-top: 12px; }
+.grid-form{ display:grid; grid-template-columns: 2fr 3fr 2fr; gap:12px; align-items:end; grid-auto-rows: auto; }
+.actions-center{ grid-column: 2; justify-self: center; align-self: start; margin-top: 4px; }
+.table-wrapper{ margin-top:12px; border-radius:12px; overflow:hidden; }
+.table-wrapper.colorful{ background: linear-gradient(180deg, rgba(25,118,210,0.06), rgba(25,118,210,0.02)); }
+table { width: 100%; border-collapse: separate; border-spacing: 0; }
+th.mat-header-cell, td.mat-cell{ padding: 12px 16px; }
+.thead th.mat-header-cell{ background: linear-gradient(180deg, rgba(25,118,210,0.15), rgba(25,118,210,0.05)); color: #0d47a1; font-weight: 700; border-bottom: 1px solid rgba(0,0,0,.08); }
+.h-icon{ font-size:18px; vertical-align: middle; margin-right:6px; }
+.trow:nth-child(even) td{ background: rgba(0,0,0,0.02); }
+.trow:hover td{ background: rgba(25,118,210,0.08); transition: background .2s ease; }
+.title-cell{ display:flex; align-items:center; gap:10px; }
+.title-text{ font-weight:600; }
+.desc{ color: rgba(0,0,0,.8); }
+tr.empty td { text-align:center; padding: 24px; color: rgba(0,0,0,.54); }
+.status-select { width: 180px; margin-right:8px; }
+.chip{ color:#fff; font-weight:700; }
+.chip.pending{ background:#f59e0b; }
+.chip.inprogress{ background:#3b82f6; }
+.chip.completed{ background:#10b981; }
+.status-dot{ font-size: 18px; width:18px; height:18px; border-radius:50%; }
+.status-dot.pending{ color:#f59e0b; }
+.status-dot.inprogress{ color:#3b82f6; }
+.status-dot.completed{ color:#10b981; }
+.row-pending td{ box-shadow: inset 3px 0 0 #f59e0b22; }
+.row-inprogress td{ box-shadow: inset 3px 0 0 #3b82f622; }
+.row-completed td{ box-shadow: inset 3px 0 0 #10b98122; }
+@media (max-width: 900px){
+.grid-form{ grid-template-columns: 1fr; }
+.actions-center{ grid-column: 1; }
+  .filter-field{ width: 160px; }
+}

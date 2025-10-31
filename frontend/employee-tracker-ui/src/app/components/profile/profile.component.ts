@@ -19,41 +19,8 @@ interface ProfileResponse {
   selector: 'app-profile',
   standalone: true,
   imports: [CommonModule, MatCardModule, MatIconModule],
-  template: `
-  <mat-card class="profile-card">
-    <div class="header">
-      <div class="avatar">
-        <mat-icon>account_circle</mat-icon>
-      </div>
-      <div class="titles">
-        <h2>Profile</h2>
-        <div class="sub">Your account details</div>
-      </div>
-    </div>
-    <div *ngIf="profile as p" class="grid">
-      <div class="row"><span class="label">Name</span><span class="value">{{ displayName(p) }}</span></div>
-      <div class="row"><span class="label">Role</span><span class="value">{{p.role}}</span></div>
-      <div class="row"><span class="label">Email</span><span class="value">{{p.email}}</span></div>
-      <ng-container *ngIf="p.role === 'Employee'">
-        <div class="row"><span class="label">Employee ID</span><span class="value">{{p.employeeId}}</span></div>
-        <div class="row"><span class="label">First name</span><span class="value">{{p.firstName || '-'}}</span></div>
-        <div class="row"><span class="label">Last name</span><span class="value">{{p.lastName || '-'}}</span></div>
-        <div class="row"><span class="label">Title</span><span class="value">{{p.title || '-'}}</span></div>
-      </ng-container>
-    </div>
-  </mat-card>
-  `,
-  styles: [`
-    .profile-card{ max-width: 720px; margin: 16px auto; padding: 16px 18px; }
-    .header{ display:flex; align-items:center; gap:12px; margin-bottom: 8px; }
-    .avatar{ width:56px; height:56px; display:flex; align-items:center; justify-content:center; color:#3f51b5; }
-    .avatar mat-icon{ font-size:56px; width:56px; height:56px; }
-    .sub{ color:#666; }
-    .grid{ margin-top: 10px; display:grid; grid-template-columns: 1fr; gap:10px; }
-    .row{ display:flex; gap:12px; }
-    .row .label{ width: 160px; color:#555; }
-    .row .value{ font-weight:600; }
-  `]
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   profile?: ProfileResponse;

@@ -19,7 +19,6 @@ node_modules/
 dist/
 .angular/
 coverage/
-package-lock.json
 *.db
 
 # OS

@@ -1,0 +1,12 @@
+.bg{ min-height:100vh; padding: 24px; display:flex; align-items:center; justify-content:center; background: radial-gradient(1200px 600px at 10% 10%, #f4f4ff 0%, transparent 70%), linear-gradient(135deg, #ece9f0 0%, #ffffff 100%); }
+.auth-card{ width: 100%; max-width: 520px; padding: 20px 24px 16px; }
+.header{ display:flex; flex-direction:column; align-items:center; gap:6px; margin-top: 8px; }
+.icon-circle{ width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: #3f51b5; color:white; }
+.title{ text-align:center; margin: 8px 0 4px; }
+.subtitle{ text-align:center; margin: 0 0 12px; color: rgba(0,0,0,.6); font-size: 14px; }
+.form-grid{ display:grid; grid-template-columns: 1fr; gap:16px; margin-top:12px; }
+.form-grid .mat-form-field{ width:100%; }
+.row{ display:flex; align-items:center; gap:12px; padding: 0 2px; }
+.link{ color:#3f51b5; margin-left:auto; }
+.actions{ display:flex; justify-content:space-between; align-items:center; margin-top: 4px; }
+.error{ color:#c62828; margin-top: 8px; text-align:center; }

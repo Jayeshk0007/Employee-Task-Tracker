@@ -1,0 +1,16 @@
+<div class="dialog-container">
+  <div class="header" [class.warn]="data.color === 'warn'">
+    <mat-icon class="header-icon">{{ data.icon || 'help' }}</mat-icon>
+    <div class="titles">
+      <h3 class="title">{{ data.title || 'Please confirm' }}</h3>
+      <div class="subtitle">{{ data.message }}</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button mat-button (click)="onCancel()">{{ data.cancelText || 'Cancel' }}</button>
+    <button mat-raised-button [color]="data.color || 'primary'" (click)="onConfirm()">
+      {{ data.confirmText || 'OK' }}
+    </button>
+  </div>
+</div>

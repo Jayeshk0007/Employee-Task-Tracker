@@ -1,0 +1,11 @@
+.dialog-container{ min-width: 420px; max-width: 640px; padding: 16px 20px; }
+.header{ display:flex; gap:16px; align-items:flex-start; padding: 6px 0 10px; }
+.header.warn .header-icon{ color: #d32f2f; }
+.header-icon{ font-size:32px; width:32px; height:32px; opacity:.9; }
+.titles{ display:flex; flex-direction:column; gap:4px; }
+.title{ margin:0; font-size:20px; font-weight:600; }
+.subtitle{ opacity:.85; line-height: 1.35; font-size: 14px; }
+.actions{ display:flex; justify-content:flex-end; gap:10px; padding-top: 16px; }
+@media (max-width: 520px){
+  .dialog-container{ min-width: unset; width: 92vw; max-width: 92vw; padding: 14px 16px; }
+}

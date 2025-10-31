@@ -31,62 +31,8 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
       ])
     ])
   ],
-  template: `
-  <div class="bg">
-    <mat-card class="auth-card mat-elevation-z6" [@fadeSlide]>
-      <div class="header">
-        <div class="icon-circle"><mat-icon>assignment_ind</mat-icon></div>
-        <h2 class="title">Welcome back</h2>
-        <p class="subtitle">Sign in to continue to Employee Tracker</p>
-      </div>
-      <form (ngSubmit)="onSubmit()" #f="ngForm" class="form-grid" [@staggerIn]>
-        <mat-form-field appearance="outline" class="stagger">
-          <mat-label>Email</mat-label>
-          <mat-icon matPrefix>mail</mat-icon>
-          <input matInput [(ngModel)]="email" name="email" type="email" required email #emailCtrl="ngModel" />
-          <mat-error *ngIf="emailCtrl.touched && emailCtrl.invalid">
-            <span *ngIf="emailCtrl.errors?.['required']">Email is required.</span>
-            <span *ngIf="emailCtrl.errors?.['email']">Enter a valid email address.</span>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="stagger">
-          <mat-label>Password</mat-label>
-          <mat-icon matPrefix>lock</mat-icon>
-          <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password" name="password" required minlength="6" #pwdCtrl="ngModel" />
-          <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'" [attr.aria-pressed]="!hidePassword">
-            <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
-          </button>
-          <mat-error *ngIf="pwdCtrl.touched && pwdCtrl.invalid">
-            <span *ngIf="pwdCtrl.errors?.['required']">Password is required.</span>
-            <span *ngIf="pwdCtrl.errors?.['minlength']">Password must be at least 6 characters.</span>
-          </mat-error>
-        </mat-form-field>
-        <div class="row stagger">
-          <mat-checkbox [(ngModel)]="remember" name="remember">Remember me</mat-checkbox>
-        </div>
-        <div class="actions stagger">
-          <button mat-stroked-button type="button" (click)="goRegister()">Sign up</button>
-          <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Login</button>
-        </div>
-        <div *ngIf="error" class="error stagger">{{error}}</div>
-      </form>
-    </mat-card>
-  </div>
-  `,
-  styles: [`
-    .bg{ min-height:100vh; padding: 24px; display:flex; align-items:center; justify-content:center; background: radial-gradient(1200px 600px at 10% 10%, #f4f4ff 0%, transparent 70%), linear-gradient(135deg, #ece9f0 0%, #ffffff 100%); }
-    .auth-card{ width: 100%; max-width: 520px; padding: 20px 24px 16px; }
-    .header{ display:flex; flex-direction:column; align-items:center; gap:6px; margin-top: 8px; }
-    .icon-circle{ width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; background: #3f51b5; color:white; }
-    .title{ text-align:center; margin: 8px 0 4px; }
-    .subtitle{ text-align:center; margin: 0 0 12px; color: rgba(0,0,0,.6); font-size: 14px; }
-    .form-grid{ display:grid; grid-template-columns: 1fr; gap:16px; margin-top:12px; }
-    .form-grid .mat-form-field{ width:100%; }
-    .row{ display:flex; align-items:center; gap:12px; padding: 0 2px; }
-    .link{ color:#3f51b5; margin-left:auto; }
-    .actions{ display:flex; justify-content:space-between; align-items:center; margin-top: 4px; }
-    .error{ color:#c62828; margin-top: 8px; text-align:center; }
-  `]
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   email = '';

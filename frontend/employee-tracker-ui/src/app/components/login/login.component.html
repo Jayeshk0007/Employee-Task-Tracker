@@ -1,0 +1,40 @@
+<div class="bg">
+  <mat-card class="auth-card mat-elevation-z6" [@fadeSlide]>
+    <div class="header">
+      <div class="icon-circle"><mat-icon>assignment_ind</mat-icon></div>
+      <h2 class="title">Welcome back</h2>
+      <p class="subtitle">Sign in to continue to Employee Tracker</p>
+    </div>
+    <form (ngSubmit)="onSubmit()" #f="ngForm" class="form-grid" [@staggerIn]>
+      <mat-form-field appearance="outline" class="stagger">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix>mail</mat-icon>
+        <input matInput [(ngModel)]="email" name="email" type="email" required email #emailCtrl="ngModel" />
+        <mat-error *ngIf="emailCtrl.touched && emailCtrl.invalid">
+          <span *ngIf="emailCtrl.errors?.['required']">Email is required.</span>
+          <span *ngIf="emailCtrl.errors?.['email']">Enter a valid email address.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="stagger">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password" name="password" required minlength="6" #pwdCtrl="ngModel" />
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'" [attr.aria-pressed]="!hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="pwdCtrl.touched && pwdCtrl.invalid">
+          <span *ngIf="pwdCtrl.errors?.['required']">Password is required.</span>
+          <span *ngIf="pwdCtrl.errors?.['minlength']">Password must be at least 6 characters.</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="row stagger">
+        <mat-checkbox [(ngModel)]="remember" name="remember">Remember me</mat-checkbox>
+      </div>
+      <div class="actions stagger">
+        <button mat-stroked-button type="button" (click)="goRegister()">Sign up</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Login</button>
+      </div>
+      <div *ngIf="error" class="error stagger">{{error}}</div>
+    </form>
+  </mat-card>
+</div>
